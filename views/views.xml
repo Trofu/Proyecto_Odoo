@@ -1,0 +1,30 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="control_de_dispositivos.list">
+      <field name="name">control_de_dispositivos list</field>
+      <field name="model">control_de_dispositivos.control_de_dispositivos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="control_de_dispositivos.action_window">
+      <field name="name">control_de_dispositivos window</field>
+      <field name="res_model">control_de_dispositivos.control_de_dispositivos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="control_de_dispositivos" id="control_de_dispositivos.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Menu 1" id="control_de_dispositivos.menu_1" parent="control_de_dispositivos.menu_root"/>
+    <!-- actions -->
+    <menuitem name="List" id="control_de_dispositivos.menu_1_list" parent="control_de_dispositivos.menu_1"
+              action="control_de_dispositivos.action_window"/>
+  </data>
+</odoo>
