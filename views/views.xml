@@ -7,14 +7,31 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Dispositivos">
                     <group>
-                        <field name="dispTipo" string="Tipo de Dispositivo"/>
-                        <field name="dispTiempoPredeterminado" string="Tiempo Predeterminado (horas)"/>
-                        <field name="dispTiempo" string="Tiempo de Registro"/>
+                        <!-- Grupo izquierdo -->
+                        <group class="oe_left">
+                            <separator string="Dispositivos" colspan="2"/>
+                            <field name="dispMax" string="Máxima cantidad de dispositivos"/>
+                            <field name="dispActu" string="Cantidad actual de dispositivos"/>
+                            <field name="dispRest" string="Resto de dispositivos"/>
+                        </group>
+
+                        <!-- Grupo derecho -->
+                        <group class="oe_right">
+                            <separator string="Tiempo" colspan="2"/>
+                            <field name="dispTipo" string="Tipo de Dispositivo"/>
+                            <field name="dispTiempoPredeterminado" string="Tiempo Predeterminado (horas)"/>
+                            <field name="dispTiempo" string="Tiempo total faltante (horas)"/>
+                        </group>
                     </group>
+
+                    <!-- Grupo de botones dentro del notebook -->
                     <group>
-                        <field name="dispMax" string="Máxima cantidad de dispositivos"/>
-                        <field name="dispActu" string="Actual cantidad de dispositivos"/>
-                        <field name="dispRest" string="Resto de cantidad de dispositivos"/>
+                        <div class="oe_button_box">
+                            <!-- Botón para aumentar la cantidad de dispositivos -->
+                            <button string="Aumentar Dispositivos" type="object" name="action_increase_dispActu" class="oe_highlight"/>
+                            <!-- Botón para decrementar la cantidad de dispositivos -->
+                            <button string="Decrementar Dispositivos" type="object" name="action_decrease_dispActu" class="oe_highlight"/>
+                        </div>
                     </group>
                 </page>
             </xpath>
