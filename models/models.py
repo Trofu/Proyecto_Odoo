@@ -9,7 +9,10 @@ class ControlDeDispositivos(models.Model):
     dispActu = fields.Integer(string='Cantidad actual de dispositivos', store=True, readonly=True)
     dispRest = fields.Integer(string='Resto de dispositivos', readonly=True, compute="_dispRestantes")
     dispTipo = fields.Selection(
-        selection=[('movil', 'Móvil'),('tablet', 'Tablet'),('laptop', 'Laptop'),('otro', 'Otro')], 
+        selection=[('movil', 'Móvil'),
+                   ('tablet', 'Tablet'),
+                   ('laptop', 'Laptop'),
+                   ('otro', 'Otro')], 
         string="Tipo de Dispositivo", default="movil", store=True)
     dispTiempoPredeterminado = fields.Integer(string="Tiempo Predeterminado (horas)", default=1, readonly=True)
     dispTiempo = fields.Integer(string="Tiempo total faltante (horas)", compute="_calcular_dispTiempo", store=True)
@@ -60,18 +63,39 @@ class ControlDeDispositivos(models.Model):
         for registro in self:
             registro.dispTiempo = (registro.dispMax - registro.dispActu) * registro.dispTiempoPredeterminado
 
+    producto_vinculado_id = fields.Many2one(
+        'product.product',  
+        string="Producto Vinculado", 
+        help="Vincula este grupo de dispositivos con un producto de inventario"
+    )
+    
+    producto_vinculado_qty = fields.Float(
+        string="Cantidad Disponible",
+        related="producto_vinculado_id.qty_available",
+        readonly=True,
+        store=True
+    )
+
+
     def action_increase_dispActu(self):
-        """Aumenta la cantidad actual de dispositivos."""
         for record in self:
             if record.dispActu < record.dispMax:
                 record.dispActu += 1
+                if record.producto_vinculado_id:
+                    record.producto_vinculado_id.qty_available += 1  
             else:
                 raise UserError("No puedes superar el límite de dispositivos.")
 
+
     def action_decrease_dispActu(self):
-        """Disminuye la cantidad actual de dispositivos."""
         for record in self:
             if record.dispActu > 0:
                 record.dispActu -= 1
+                if record.producto_vinculado_id:
+                    if record.producto_vinculado_id.qty_available > 0:
+                        record.producto_vinculado_id.with_context(update_qty=True).write({
+                            'qty_available': record.producto_vinculado_id.qty_available - 1
+                        })
             else:
                 raise UserError("No puedes tener una cantidad negativa de dispositivos.")
+

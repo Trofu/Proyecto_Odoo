@@ -23,15 +23,20 @@
                             <field name="dispTiempo" string="Tiempo total faltante (horas)"/>
                         </group>
                     </group>
-
-                    <!-- Grupo de botones dentro del notebook -->
                     <group>
-                        <div class="oe_button_box">
-                            <!-- Botón para aumentar la cantidad de dispositivos -->
+                        <group class="oe_left">
                             <button string="Aumentar Dispositivos" type="object" name="action_increase_dispActu" class="oe_highlight"/>
-                            <!-- Botón para decrementar la cantidad de dispositivos -->
+                        </group>
+                        <group class="oe_right">
                             <button string="Decrementar Dispositivos" type="object" name="action_decrease_dispActu" class="oe_highlight"/>
-                        </div>
+                        </group>
+                    </group>
+                    <!-- Nuevo grupo para el producto vinculado -->
+                    <group>
+                        <separator string="Producto Vinculado" colspan="2"/>
+                        <field name="producto_vinculado_id" string="Producto Vinculado"/>
+                        <!-- Mostrar la cantidad disponible en el inventario del producto vinculado -->
+                        <field name="producto_vinculado_qty" string="Cantidad Disponible" readonly="1"/>
                     </group>
                 </page>
             </xpath>
