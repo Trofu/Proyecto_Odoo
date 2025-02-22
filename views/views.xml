@@ -5,38 +5,36 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
+                <!-- Página 1: Declaración de Dispositivos -->
                 <page string="Dispositivos">
                     <group>
-                        <!-- Grupo izquierdo -->
+                        <!-- Grupo para datos de dispositivos -->
                         <group class="oe_left">
-                            <separator string="Dispositivos" colspan="2"/>
+                            <separator string="Declaración de Dispositivos" colspan="2"/>
                             <field name="dispMax" string="Máxima cantidad de dispositivos"/>
-                            <field name="dispActu" string="Cantidad actual de dispositivos"/>
-                            <field name="dispRest" string="Resto de dispositivos"/>
-                        </group>
-
-                        <!-- Grupo derecho -->
-                        <group class="oe_right">
-                            <separator string="Tiempo" colspan="2"/>
                             <field name="dispTipo" string="Tipo de Dispositivo"/>
-                            <field name="dispTiempoPredeterminado" string="Tiempo Predeterminado (horas)"/>
-                            <field name="dispTiempo" string="Tiempo total faltante (horas)"/>
+                            <field name="dispTiempoPredeterminado" string="Tiempo por tipo (horas)"/>
+                            <button string="Añadir a Inventario" type="object" name="action_add_to_inventory" class="oe_highlight"/>
                         </group>
                     </group>
+                </page>
+
+                <!-- Página 2: Selector de Inventario -->
+                <page string="Inventario">
                     <group>
                         <group class="oe_left">
-                            <button string="Aumentar Dispositivos" type="object" name="action_increase_dispActu" class="oe_highlight"/>
+                            <separator string="Inventario de Dispositivos" colspan="2"/>
+                            <field name="producto_vinculado_id" string="Producto Vinculado" domain="[('name', 'ilike', name)]"/>
+                            <field name="producto_vinculado_qty" string="Cantidad Total" readonly="1"/>
+                            <field name="dispRest" string="Cantidad Restante" readonly="1"/>
+                            <field name="dispActu" string="Cantidad Actual" readonly="1"/>
+                            <field name="dispTiempo" string="Tiempo Total Faltante" readonly="1"/>
+                            <field name="dispTiempoPredeterminado" string="Tiempo por tipo (horas)" readonly="1"/>
                         </group>
                         <group class="oe_right">
+                            <button string="Aumentar Dispositivos" type="object" name="action_increase_dispActu" class="oe_highlight"/>
                             <button string="Decrementar Dispositivos" type="object" name="action_decrease_dispActu" class="oe_highlight"/>
                         </group>
-                    </group>
-                    <!-- Nuevo grupo para el producto vinculado -->
-                    <group>
-                        <separator string="Producto Vinculado" colspan="2"/>
-                        <field name="producto_vinculado_id" string="Producto Vinculado"/>
-                        <!-- Mostrar la cantidad disponible en el inventario del producto vinculado -->
-                        <field name="producto_vinculado_qty" string="Cantidad Disponible" readonly="1"/>
                     </group>
                 </page>
             </xpath>
