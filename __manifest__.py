@@ -3,24 +3,23 @@
     'name': "Control de Dispositivos",
 
     'summary': """
-        Módulo para gestionar la actualización de dispositivos y controlar el estado de cada uno.
+        Módulo para gestionar dispositivos en inventario y ver la cantidad que quedan de su propietario.
     """,
 
     'description': """
-        Este módulo permite gestionar a los clientes (empresas) y el estado de los dispositivos que han sido actualizados a un nuevo software. Los dispositivos se organizan según su estado (pendiente, actualizado, en revisión, error) y se pueden asignar técnicos para su seguimiento.
+        Este módulo permite gestionar los dispositivos de los clientes (empresas) dentro del inventario de Odoo. 
+        Se integra con el módulo de inventario para registrar y rastrear la cantidad de dispositivos disponibles. 
     """,
 
     'author': "Juan Luis Espinosa Cuenca",
     'website': "https://github.com/Trofu",
 
-    'category': 'Uncategorized',  
-    'version': '0.1',
+    'category': 'Inventory',  
+    'version': '1.0',
 
-
-    'depends': ['base','contacts','stock'],
+    'depends': ['base', 'contacts', 'stock'],
 
     'data': [
-        #'security/ir.model.access.csv',  
         'views/views.xml',               
         'views/templates.xml',           
     ],
@@ -29,4 +28,3 @@
         'demo/demo.xml',
     ],
 }
-

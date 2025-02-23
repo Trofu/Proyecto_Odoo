@@ -8,27 +8,21 @@
                 <!-- Página 1: Declaración de Dispositivos -->
                 <page string="Dispositivos">
                     <group>
-                        <!-- Grupo para datos de dispositivos -->
-                        <group class="oe_left">
-                            <separator string="Declaración de Dispositivos" colspan="2"/>
-                            <field name="dispMax" string="Máxima cantidad de dispositivos"/>
-                            <field name="dispTipo" string="Tipo de Dispositivo"/>
-                            <field name="dispTiempoPredeterminado" string="Tiempo por tipo (horas)" readonly="1"/>
-                            <button string="Añadir a Inventario" type="object" name="action_add_to_inventory" class="oe_highlight"/>
-                        </group>
+                        <separator string="Declaración de Dispositivos" colspan="2"/>
+                        <field name="dispMax" string="Máxima cantidad de dispositivos"/>
+                        <field name="dispTipo" string="Tipo de Dispositivo"/>
+                        <field name="dispTiempoPredeterminado" string="Tiempo por tipo (horas)" readonly="1"/>
+                        <button string="Añadir a Inventario" type="object" name="action_add_to_inventory" class="oe_highlight"/>
                     </group>
                 </page>
-
                 <!-- Página 2: Inventario de Dispositivos -->
                 <page string="Inventario">
                     <group>
-                        <group class="oe_left">
-                            <separator string="Inventario de Dispositivos" colspan="2"/>
-                            <field name="producto_vinculado_id" string="Producto Vinculado" domain="[('name', 'ilike', name)]"/>
-                            <field name="producto_vinculado_qty" string="Cantidad Total" readonly="1"/>
-                            <field name="dispTiempo" string="Tiempo Total Faltante (horas)" readonly="1"/>
-                            <field name="dispTiempoPredeterminadoTipo" string="Tiempo por tipo (horas)" readonly="1"/>
-                        </group>
+                        <separator string="Inventario de Dispositivos" colspan="2"/>
+                        <field name="producto_vinculado_id" string="Producto Vinculado" domain="[('name', 'ilike', name)]"/>
+                        <field name="producto_vinculado_qty" string="Cantidad Total" readonly="1"/>
+                        <field name="dispTiempo" string="Tiempo Total Faltante (horas)" readonly="1"/>
+                        <field name="dispTiempoPredeterminadoTipo" string="Tiempo por tipo (horas)" readonly="1"/>
                     </group>
                 </page>
             </xpath>
