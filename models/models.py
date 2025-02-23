@@ -92,7 +92,7 @@ class ControlDeDispositivos(models.Model):
     def action_add_to_inventory(self):
         #Crea un producto en el inventario basado en el tipo de dispositivo y lo vincula.
         #Si el producto ya existe, lo elimina y crea uno nuevo con la cantidad definida.
-        #productos_por_tipo = self.DISP_CONFIG['productos_por_tipo']
+        productos_por_tipo = self.DISP_CONFIG['productos_por_tipo']
         
         # Obtener el nombre del producto según el tipo de dispositivo
         nombre_producto = productos_por_tipo.get(self.dispTipo, None)
